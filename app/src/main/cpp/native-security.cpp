@@ -13,7 +13,6 @@ jint JNI_OnLoad(JavaVM *vm, void *reserved) {
         return JNI_ERR;
     }
     if (verifySign(env) == JNI_OK) {
-        LOGI("签名一致");
         return JNI_VERSION_1_4;
     }
     LOGE("签名不一致!");
@@ -76,9 +75,9 @@ static int verifySign(JNIEnv *env) {
     // android.content.pm.PackageManager object
     jobject package_manager = env->CallObjectMethod(application, getPackageManager);
     // PackageManager class
-    jclass packageManager_clz = env->GetObjectClass(package_manager);
+    jclass package_manager_clz = env->GetObjectClass(package_manager);
     // getPackageInfo()
-    jmethodID getPackageInfo = env->GetMethodID(packageManager_clz, "getPackageInfo",
+    jmethodID getPackageInfo = env->GetMethodID(package_manager_clz, "getPackageInfo",
                                                 "(Ljava/lang/String;I)Landroid/content/pm/PackageInfo;");
     // context.getPackageName()
     jmethodID getPackageName = env->GetMethodID(context_clz, "getPackageName",
@@ -105,6 +104,8 @@ static int verifySign(JNIEnv *env) {
     // release
     env->DeleteLocalRef(application);
     env->DeleteLocalRef(context_clz);
+    env->DeleteLocalRef(package_manager);
+    env->DeleteLocalRef(package_manager_clz);
     env->DeleteLocalRef(package_name);
     env->DeleteLocalRef(package_info);
     env->DeleteLocalRef(package_info_clz);
