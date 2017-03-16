@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.chenenyu.security.MainActivity">
+
+    <TextView
+        android:id="@+id/text_label1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="从apk中读取的签名："/>
+
+    <TextView
+        android:id="@+id/text_sign1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="5"
+        android:ellipsize="end"
+        app:layout_constraintTop_toBottomOf="@+id/text_label1"
+        tools:text="111"/>
+
+    <TextView
+        android:id="@+id/text_label3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:maxLines="5"
+        android:text="从native中读取的密钥："
+        app:layout_constraintTop_toBottomOf="@+id/text_sign1"/>
+
+    <TextView
+        android:id="@+id/text_secret"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/text_label3"
+        tools:text="secret"/>
+
+</android.support.constraint.ConstraintLayout>
